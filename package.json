@@ -1,7 +1,7 @@
 {
   "name": "@arkpay/merchant-api-sdk",
   "version": "1.0.0",
-  "description": "This library was generated with [Nx](https://nx.dev).",
+  "description": "ArkPay - official SDK for Javascript/Typescript developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
