@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-  $ npm install @arkpay/merchant-api-sdk
+  $ npm install arkpay-merchant-api-sdk
 ```
 
 ## API Usage Example
@@ -14,7 +14,7 @@ In order to use API coverage through ArkPay Merchant API SDK, one needs to creat
 API requests are made by simply calling the methods on the instance. Usage example following
 
 ```ts
-import { SDKMerchantApiIntegration } from '@arkpay/merchant-api-sdk';
+import { SDKMerchantApiIntegration } from 'arkpay-merchant-api-sdk';
 
 // API usage example
 const merchantApiSDK = new SDKMerchantApiIntegration({
