@@ -73,7 +73,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 const randomId = uuidv4();
 
-// Pay transaction API example
 const result = await merchantApiSDK.transactions.getTransactionById(randomId);
 ```
 
@@ -84,6 +83,5 @@ import { v4 as uuidv4 } from 'uuid';
 
 const randomId = uuidv4();
 
-// Pay transaction API example
 const result = await merchantApiSDK.transactions.getTransactionByMerchantTransactionId(randomId);
 ```
