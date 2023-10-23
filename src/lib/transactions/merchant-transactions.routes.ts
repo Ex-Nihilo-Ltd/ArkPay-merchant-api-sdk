@@ -1,70 +1,100 @@
-import { plainToClass } from 'class-transformer';
-import { SDKMerchantApiBase } from '../base/api';
-import { SDKMerchantApiConstructParams } from '../base/types';
+import { SDKMerchantApiBase } from "../base/api";
+import { SDKMerchantApiConstructParams } from "../base/types";
 
-import { MerchantHash } from '../hash/api';
-import { CreateMerchantTransactionDTO, MerchantApiCreatedTransactionDTO, MerchantApiTransactionDTO } from './types';
+import { MerchantHash } from "../hash/api";
+import {
+  ICreateMerchantTransactionPayload,
+  IMerchantApiCreatedTransactionResponse,
+  IMerchantPayTransactionPayload,
+  IMerchantApiTransactionResponse,
+  IMerchantPayTransactionResponse,
+} from "./types";
 
 export class MerchantApiTransactionsRoutes {
   private baseURI: string;
   private signatureBaseURI: string;
 
-  constructor(private readonly api: SDKMerchantApiBase, private readonly config: SDKMerchantApiConstructParams) {
-    this.signatureBaseURI = '/api/v1/merchant/api/transactions';
-    this.baseURI = '/transactions';
+  constructor(
+    private readonly api: SDKMerchantApiBase,
+    private readonly config: SDKMerchantApiConstructParams
+  ) {
+    this.signatureBaseURI = "/api/v1/merchant/api/transactions";
+    this.baseURI = "/transactions";
   }
 
-  public async createTransaction(payload: CreateMerchantTransactionDTO): Promise<MerchantApiCreatedTransactionDTO> {
+  public async createTransaction(
+    payload: ICreateMerchantTransactionPayload
+  ): Promise<IMerchantApiCreatedTransactionResponse> {
     const signature = MerchantHash.createSignature(
-      'POST',
+      "POST",
       this.signatureBaseURI,
       JSON.stringify(payload),
-      this.config.secretKey,
+      this.config.secretKey
     );
 
-    const transaction = await this.api.post<MerchantApiCreatedTransactionDTO, CreateMerchantTransactionDTO>(
-      `${this.baseURI}`,
-      payload,
-      { headers: { 'x-api-key': this.config.apiKey, signature } },
-    );
-
-    return plainToClass(MerchantApiCreatedTransactionDTO, transaction);
+    return this.api.post<
+      IMerchantApiCreatedTransactionResponse,
+      ICreateMerchantTransactionPayload
+    >(`${this.baseURI}`, payload, {
+      headers: { "x-api-key": this.config.apiKey, signature },
+    });
   }
 
-  public async getTransactionById(transactionId: string): Promise<MerchantApiTransactionDTO> {
+  public async getTransactionById(
+    transactionId: string
+  ): Promise<IMerchantApiTransactionResponse> {
     const signature = MerchantHash.createSignature(
-      'GET',
+      "GET",
       `${this.signatureBaseURI}/id/${transactionId}`,
       JSON.stringify({}),
-      this.config.secretKey,
+      this.config.secretKey
     );
 
-    const transaction = await this.api.get<MerchantApiTransactionDTO>(`${this.baseURI}/id/${transactionId}`, {
-      headers: { 'x-api-key': this.config.apiKey, signature },
-    });
-
-    return plainToClass(MerchantApiTransactionDTO, transaction);
+    return this.api.get<IMerchantApiTransactionResponse>(
+      `${this.baseURI}/id/${transactionId}`,
+      {
+        headers: { "x-api-key": this.config.apiKey, signature },
+      }
+    );
   }
 
   public async getTransactionByMerchantTransactionId(
-    merchantTransactionId: string,
-  ): Promise<MerchantApiTransactionDTO> {
+    merchantTransactionId: string
+  ): Promise<IMerchantApiTransactionResponse> {
     const signature = MerchantHash.createSignature(
-      'GET',
+      "GET",
       `${this.signatureBaseURI}/merchantTransactionId/${merchantTransactionId}`,
       JSON.stringify({}),
-      this.config.secretKey,
+      this.config.secretKey
     );
-    const transaction = await this.api.get<MerchantApiTransactionDTO>(
+
+    return this.api.get<IMerchantApiTransactionResponse>(
       `${this.baseURI}/merchantTransactionId/${merchantTransactionId}`,
       {
         headers: {
-          'x-api-key': this.config.apiKey,
+          "x-api-key": this.config.apiKey,
           signature,
         },
-      },
+      }
+    );
+  }
+
+  public async payTransaction(
+    transactionId: string,
+    payload: IMerchantPayTransactionPayload
+  ): Promise<IMerchantPayTransactionResponse> {
+    const signature = MerchantHash.createSignature(
+      "POST",
+      `${this.signatureBaseURI}/${transactionId}/pay`,
+      JSON.stringify(payload),
+      this.config.secretKey
     );
 
-    return plainToClass(MerchantApiTransactionDTO, transaction);
+    return this.api.post<
+      IMerchantPayTransactionResponse,
+      IMerchantPayTransactionPayload
+    >(`${this.baseURI}/${transactionId}/pay`, payload, {
+      headers: { "x-api-key": this.config.apiKey, signature },
+    });
   }
 }
