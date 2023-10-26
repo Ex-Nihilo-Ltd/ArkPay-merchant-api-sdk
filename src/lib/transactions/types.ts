@@ -1,9 +1,8 @@
 export interface ICreateMerchantTransactionPayload {
   merchantTransactionId: string;
-  acsReturnUrl?: string;
   amount: number;
   currency: string;
-  description?: string;
+  description: string;
   handlePayment?: boolean;
 }
 
@@ -22,7 +21,6 @@ export interface IMerchantPayTransactionPayload {
   holderName: string;
   customerAddress?: ICustomerPayAddressPayload;
   amount?: number;
-  acsReturnUrl?: string;
   ipAddress?: string;
   currency: string;
 }
