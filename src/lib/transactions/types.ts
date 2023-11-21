@@ -9,7 +9,7 @@ export interface ICreateMerchantTransactionPayload {
 export interface ICustomerPayAddressPayload {
   address?: string;
   city?: string;
-  countryRegion?: string;
+  countryCode?: string;
   zipCode?: string;
   phoneNumber?: string;
 }
