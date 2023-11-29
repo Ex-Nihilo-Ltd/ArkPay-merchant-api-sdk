@@ -26,7 +26,7 @@ export class MerchantApiStoreRoutes {
     );
 
     return this.api.get<IGetCardsByExternalCustomerIdResponse>(
-      `${this.baseURI}/${externalCustomerId}`,
+      `${this.baseURI}/kyc-cards/${externalCustomerId}`,
       {
         headers: { "x-api-key": this.config.apiKey, signature },
       }
