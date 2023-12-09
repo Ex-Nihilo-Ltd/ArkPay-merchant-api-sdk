@@ -4,6 +4,7 @@ export interface ICreateMerchantTransactionPayload {
   currency: string;
   description: string;
   handlePayment?: boolean;
+  externalCustomerId?: string;
 }
 
 export interface ICustomerPayAddressPayload {
@@ -55,6 +56,7 @@ export interface IMerchantApiTransactionResponse {
   redirectUrl?: string;
   createdAt: Date;
   updatedAt: Date;
+  externalCustomerId?: string;
 }
 
 export interface IMerchantPayTransactionResponse {
