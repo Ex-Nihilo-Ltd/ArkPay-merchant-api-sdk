@@ -30,6 +30,7 @@ const merchantApiSDK = new SDKMerchantApiIntegration({
 import { v4 as uuidv4 } from "uuid";
 
 const randomId = uuidv4();
+const randomExternalCustomerId = uuidv4();
 
 // Create transaction API example
 const response = await merchantApiSDK.transactions.createTransaction({
@@ -38,6 +39,7 @@ const response = await merchantApiSDK.transactions.createTransaction({
   merchantTransactionId: `RANDOM ID ${randomId}`,
   description: `Buying example package`,
   handlePayment: true,
+  externalCustomerId: `RANDOM ID ${randomExternalCustomerId}`,
 });
 ```
 
@@ -90,4 +92,15 @@ const result =
   await merchantApiSDK.transactions.getTransactionByMerchantTransactionId(
     randomId
   );
+```
+
+### Get Cards Information By External Customer Id
+
+```ts
+import { v4 as uuidv4 } from "uuid";
+
+const randomId = uuidv4();
+
+const result =
+  await merchantApiSDK.stores.getCardsByExternalCustomerId(externalCustomerId);
 ```
