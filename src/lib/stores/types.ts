@@ -1,9 +1,12 @@
 export interface IMerchantCard {
+  id: string;
   pan: string;
-  isCardVerified: boolean;
+  expiry: string;
+  holder: string;
+  verified: boolean;
 }
 
 export interface IGetCardsByExternalCustomerIdResponse {
-  cards: IMerchantCard[],
+  cards: IMerchantCard[];
   verificationUrl: string;
 }
