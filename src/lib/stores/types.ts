@@ -1,5 +1,8 @@
 export interface IMerchantCard {
+  id: string;
   pan: string;
+  expiry: string;
+  holder: string;
   verified: boolean;
 }
 
