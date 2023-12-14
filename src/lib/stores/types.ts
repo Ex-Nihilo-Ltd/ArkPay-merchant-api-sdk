@@ -4,6 +4,7 @@ export interface IMerchantCard {
   expiry: string;
   holder: string;
   verified: boolean;
+  whitelisted?: boolean;
 }
 
 export interface IGetCardsByExternalCustomerIdResponse {
