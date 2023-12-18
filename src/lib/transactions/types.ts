@@ -49,7 +49,7 @@ export interface IMerchantApiTransactionResponse {
   fee: number;
   earning: number;
   status: string;
-  currencyCode: string;
+  currency: string;
   testObject?: boolean;
   companyId: string;
   store: IMerchantApiStoreResponse;
@@ -62,7 +62,7 @@ export interface IMerchantApiTransactionResponse {
 export interface IMerchantPayTransactionResponse {
   id: string;
   amount: number;
-  currency: ICurrencyResponse;
+  currency: string;
   storeId: string;
   storeName?: string;
   returnUrl?: string;
@@ -79,10 +79,4 @@ export enum TransactionStatus {
   FAILED = "FAILED",
   COMPLETED = "COMPLETED",
   REFUNDED = "REFUNDED",
-}
-
-export interface ICurrencyResponse {
-  code: string;
-  name: string;
-  symbol: string;
 }
