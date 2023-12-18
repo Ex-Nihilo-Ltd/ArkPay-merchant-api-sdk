@@ -62,7 +62,7 @@ export interface IMerchantApiTransactionResponse {
 export interface IMerchantPayTransactionResponse {
   id: string;
   amount: number;
-  currency: string;
+  currency: ICurrencyResponse;
   storeId: string;
   storeName?: string;
   returnUrl?: string;
@@ -79,4 +79,10 @@ export enum TransactionStatus {
   FAILED = "FAILED",
   COMPLETED = "COMPLETED",
   REFUNDED = "REFUNDED",
+}
+
+export interface ICurrencyResponse {
+  code: string;
+  name: string;
+  symbol: string;
 }
