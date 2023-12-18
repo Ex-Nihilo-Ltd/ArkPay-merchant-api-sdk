@@ -23,7 +23,6 @@ export interface IMerchantPayTransactionPayload {
   customerAddress?: ICustomerPayAddressPayload;
   amount?: number;
   ipAddress?: string;
-  currency: string;
 }
 
 export interface IMerchantApiCreatedTransactionResponse {
@@ -49,7 +48,7 @@ export interface IMerchantApiTransactionResponse {
   fee: number;
   earning: number;
   status: string;
-  currency: string;
+  currencyCode: string;
   testObject?: boolean;
   companyId: string;
   store: IMerchantApiStoreResponse;
@@ -65,7 +64,6 @@ export interface IMerchantPayTransactionResponse {
   currency: ICurrencyResponse;
   storeId: string;
   storeName?: string;
-  returnUrl?: string;
   status: TransactionStatus;
   message: string;
   feeType: string;
