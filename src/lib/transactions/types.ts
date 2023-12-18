@@ -23,7 +23,6 @@ export interface IMerchantPayTransactionPayload {
   customerAddress?: ICustomerPayAddressPayload;
   amount?: number;
   ipAddress?: string;
-  currency: string;
 }
 
 export interface IMerchantApiCreatedTransactionResponse {
@@ -63,22 +62,18 @@ export interface IMerchantPayTransactionResponse {
   id: string;
   amount: number;
   currency: ICurrencyResponse;
+  storeId: string;
   storeName?: string;
-  returnUrl?: string;
-  successRedirectUrl?: string;
-  errorRedirectUrl?: string;
   status: TransactionStatus;
   message: string;
   feeType: string;
   totalFee: number;
   earning: number;
-  acquirer: string;
 }
 
 export enum TransactionStatus {
   NOT_STARTED = "NOT_STARTED",
   PROCESSING = "PROCESSING",
-  SUMSUB_CARD_VERIFY = "SUMSUB_CARD_VERIFY",
   FAILED = "FAILED",
   COMPLETED = "COMPLETED",
   REFUNDED = "REFUNDED",
