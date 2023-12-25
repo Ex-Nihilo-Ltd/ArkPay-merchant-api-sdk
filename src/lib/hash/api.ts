@@ -1,7 +1,7 @@
 import { createHmac } from 'crypto';
 
 export class MerchantHash {
-  public static createSignature(httpMethod: 'GET' | 'POST', uri: string, body: string, secretKey: string): string {
+  public static createSignature(httpMethod: 'GET' | 'POST' | "DELETE", uri: string, body: string, secretKey: string): string {
     const payload = `${httpMethod} ${uri}\n${body}`;
 
     const hmac = createHmac('sha256', secretKey);
@@ -9,7 +9,7 @@ export class MerchantHash {
   }
 
   public static checkSignature(
-    httpMethod: 'GET' | 'POST',
+    httpMethod: 'GET' | 'POST' | 'DELETE',
     uri: string,
     body: string,
     secretKey: string,

@@ -44,4 +44,13 @@ export class SDKMerchantApiBase {
 
     return resData;
   }
+
+  public async delete<TResponse, TData = unknown>(
+    url: string,
+    config?: RawAxiosRequestConfig<TData> | undefined,
+  ): Promise<TResponse> {
+    const { data } = await this.api.delete<TResponse, AxiosResponse<TResponse>, TData>(url, config);
+
+    return data;
+  }
 }

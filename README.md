@@ -71,6 +71,17 @@ const paymentResponse = await merchantApiSDK.transactions.payTransaction(
 );
 ```
 
+### Refund Transaction by transactionId
+
+```ts
+
+import { v4 as uuidv4 } from "uuid";
+
+const randomId = uuidv4();
+
+const result = await merchantApiSDK.transactions.refund(randomId);
+```
+
 ### Find Transaction By ArkPay Transaction Id
 
 ```ts
@@ -102,5 +113,27 @@ import { v4 as uuidv4 } from "uuid";
 const randomId = uuidv4();
 
 const result =
-  await merchantApiSDK.stores.getCardsByExternalCustomerId(externalCustomerId);
+  await merchantApiSDK.stores.getCardsByExternalCustomerId(randomId);
+```
+
+### Whitelist card in the store's scope.
+
+If merchant wishes to allow users to withdraw funds without user verification, this function enables you to directly verify a card without requiring user verifications.
+
+```ts
+
+const result = 
+  await merchantApiSDK.stores.whiteListCard(cardId, externalCustomerId);
+
+```
+
+### Un-whitelist card.
+
+The "unwhiteListCard" function is used to remove card from whitelist
+
+```ts
+
+const result = 
+  await merchantApiSDK.stores.unwhiteListCard(cardId, externalCustomerId);
+
 ```
