@@ -5,8 +5,8 @@ import { MerchantHash } from "../hash/api";
 import {
   ICreateMerchantTransactionPayload,
   IMerchantApiCreatedTransactionResponse,
-  IMerchantPayTransactionPayload,
   IMerchantApiTransactionResponse,
+  IMerchantPayTransactionPayload,
   IMerchantPayTransactionResponse,
 } from "./types";
 
@@ -96,5 +96,18 @@ export class MerchantApiTransactionsRoutes {
     >(`${this.baseURI}/${transactionId}/pay`, payload, {
       headers: { "x-api-key": this.config.apiKey, signature },
     });
+  }
+
+  public async refund(transactionId: string): Promise<IMerchantPayTransactionResponse> {
+    const signature = MerchantHash.createSignature(
+      "POST",
+      `${this.signatureBaseURI}/${transactionId}/pay`,
+      JSON.stringify({}),
+      this.config.secretKey
+    );
+
+    return this.api.post<IMerchantPayTransactionResponse>(`${this.baseURI}/${transactionId}/refund`, {}, {
+      headers: { "x-api-key": this.config.apiKey, signature },
+    })
   }
 }
