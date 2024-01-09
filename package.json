@@ -1,6 +1,6 @@
 {
   "name": "arkpay-merchant-api-sdk",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "ArkPay - official SDK for Javascript/Typescript developers",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

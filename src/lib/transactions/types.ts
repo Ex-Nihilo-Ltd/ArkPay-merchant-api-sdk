@@ -12,17 +12,17 @@ export interface ICustomerPayAddressPayload {
   city?: string;
   countryCode?: string;
   zipCode?: string;
-  phoneNumber?: string;
 }
 export interface IMerchantPayTransactionPayload {
   cardNumber: string;
   email: string;
   cardExpiryDate: string;
   cvc: string;
-  holderName: string;
-  customerAddress?: ICustomerPayAddressPayload;
-  amount?: number;
+  phoneNumber?: string;
   ipAddress?: string;
+  holderName: string;
+  acsReturnUrl?: string;
+  customerAddress?: ICustomerPayAddressPayload;
 }
 
 export interface IMerchantApiCreatedTransactionResponse {
