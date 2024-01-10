@@ -5,6 +5,7 @@ export interface ICreateMerchantTransactionPayload {
   description: string;
   handlePayment?: boolean;
   externalCustomerId?: string;
+  returnUrl?: string;
 }
 
 export interface ICustomerPayAddressPayload {
@@ -61,14 +62,14 @@ export interface IMerchantApiTransactionResponse {
 export interface IMerchantPayTransactionResponse {
   id: string;
   amount: number;
+  totalFee: number;
+  earning: number;
   currency: ICurrencyResponse;
   storeId: string;
   storeName?: string;
   status: TransactionStatus;
   message: string;
   feeType: string;
-  totalFee: number;
-  earning: number;
 }
 
 export enum TransactionStatus {
