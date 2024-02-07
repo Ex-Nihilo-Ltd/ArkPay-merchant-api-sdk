@@ -9,21 +9,22 @@ export interface ICreateMerchantTransactionPayload {
 }
 
 export interface ICustomerPayAddressPayload {
-  address?: string;
-  city?: string;
-  countryCode?: string;
-  zipCode?: string;
+  address: string;
+  city: string;
+  state?: string;
+  countryCode: string;
+  zipCode: string;
 }
 export interface IMerchantPayTransactionPayload {
   cardNumber: string;
   email: string;
   cardExpiryDate: string;
   cvc: string;
-  phoneNumber?: string;
+  phoneNumber: string;
   ipAddress?: string;
   holderName: string;
   acsReturnUrl?: string;
-  customerAddress?: ICustomerPayAddressPayload;
+  customerAddress: ICustomerPayAddressPayload;
 }
 
 export interface IMerchantApiCreatedTransactionResponse {
