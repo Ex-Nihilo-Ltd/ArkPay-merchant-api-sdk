@@ -101,7 +101,6 @@ export class MerchantApiTransactionsRoutes {
   public async refund(transactionId: string): Promise<IMerchantPayTransactionResponse> {
     const signature = MerchantHash.createSignature(
       "POST",
-      `${this.signatureBaseURI}/${transactionId}/pay`,
       `${this.signatureBaseURI}/${transactionId}/refund`,
       JSON.stringify({}),
       this.config.secretKey
