@@ -20,7 +20,7 @@ export interface IMerchantPayTransactionPayload {
   email: string;
   cardExpiryDate: string;
   cvc: string;
-  phoneNumber: string;
+  phoneNumber?: string;
   ipAddress?: string;
   holderName: string;
   acsReturnUrl?: string;
